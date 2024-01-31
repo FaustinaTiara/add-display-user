@@ -39,5 +39,6 @@ function displayUsers() {
 }
 
 module.exports = {
-    adduser, displayUsers
+    adduser,
+    displayUsers
 };
