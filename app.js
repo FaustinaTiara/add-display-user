@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const URL = require('url');
-const UserAc = require('./adduser');
+const { adduser, displayUsers } = require('./adduser');
 const server = http.createServer(function (req, res) {
 
     const data = [
@@ -10,13 +10,7 @@ const server = http.createServer(function (req, res) {
         { username: 'eric', age: 11 }  
     ]
  
-    function displayUsers() {
-        const data = fs.readFileSync('datasource.json', 'utf-8');
-        let displayAllUsers = JSON.parse(data);
-        console.log(displayAllUsers);
-        return displayAllUsers;
-    }
- 
+    
    /* req.on('data', (data) =>{
         fs.writeFile("datasource.json", data, (err) => {
             if (err) {throwerror}            
@@ -40,7 +34,7 @@ const server = http.createServer(function (req, res) {
         const params = newUrl.query
         let u_name = params.username;
         let u_age = params.age;
-        UserAc(u_name, u_age);
+        adduser(u_name, u_age);
         res.end("record added");
     }
     else if (req.url.startsWith('/addNewUser')) {
@@ -50,7 +44,7 @@ const server = http.createServer(function (req, res) {
         const params = newUrl.query
         let u_name = params.username;
         let u_age = params.age;
-        UserAc(u_name, u_age);
+        adduser(u_name, u_age);
         res.end("record added Succesfully");
     }
 
